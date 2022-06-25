@@ -1,0 +1,118 @@
+---
+
+- name: Make sure that autlogin user is defiend when autplogin is enabled
+  fail:
+    msg: "Provide 'gnome_desktop_autologin=<user>' when gnome_desktop_autologin_enable=true" 
+  when: gnome_desktop_autologin_enable|bool and gnome_desktop_autologin|length == 0
+
+- name: Load variables based on OS type
+  include_vars: "{{ lookup('first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+        - "{{ ansible_distribution }}.yml"
+        - "family-{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
+        - "family-{{ ansible_os_family }}.yml"
+        - default.yml
+      paths:
+        - 'vars'
+
+- name: Uninstall blocking packages
+  package:
+    name: "{{ gnome_desktop_blocking_packages }}"
+    state: absent
+
+- name: Install packages
+  include_role:
+    name: package
+  vars:
+    package_mode: install-verbose
+    package_list: "{{ gnome_desktop_packages }}"
+
+- name: Enable gdm
+  service:
+    name: gdm
+    state: started
+    enabled: true
+
+
+# -------------------------------------------------------
+# Activate graphical interface
+# -------------------------------------------------------
+
+- name: Get current systemd default  # noqa command-instead-of-module
+  command: systemctl get-default
+  changed_when: false
+  register: systemdefault
+
+- name: Set default to graphical target
+  command: systemctl set-default graphical.target
+  when: "'graphical' not in systemdefault.stdout"
+  register: _systemdefault
+
+- name: Reboot when target changed  # noqa no-handler
+  reboot:
+  when:
+    - packages_result.changed or _systemdefault.changed
+    - ansible_virtualization_type not in [ 'docker', 'container', 'containerd' ]
+
+
+# -------------------------------------------------------
+# Configure GDM
+# -------------------------------------------------------
+
+- name: Setup gdm facts
+  include_role:
+    name: facts
+  vars:
+    custom_facts_additional:
+      - name: dm
+
+- name: Configure GDM
+  ini_file:
+    path: "{{ gnome_desktop_gdm_conf }}"
+    section: "{{ item.section }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value }}"
+    no_extra_spaces: yes
+    mode: "0644"
+  loop:
+    - { section: daemon, option: WaylandEnable, value: "{{ gnome_desktop_wayland }}" }
+    - { section: daemon, option: AutomaticLoginEnable, value: "{{ gnome_desktop_autologin_enable }}" }
+    - { section: daemon, option: AutomaticLogin, value: "{{ gnome_desktop_autologin }}" }
+  when: (item.value|type_debug == 'bool') or item.value|length > 0
+  notify: Restart gdm
+
+- block:
+
+    - name: Get gnome settings
+      command: >-
+        dconf read {{ item.key }}
+      changed_when: false
+      loop: "{{ gnome_desktop_settings }}"
+      register: _dconf
+
+    - name: Create settings in case they do no exist (dconf-modules fails to do so)
+      command: dconf write {{ item.item.key }} {{ item.item.value }}
+      loop: "{{ _dconf.results }}"
+      loop_control:
+        label:
+          - "{{ item.item.key }}"
+      when: item.stdout|length == 0
+      notify: Restart gdm
+
+    - name: Set gnome settings
+      community.general.dconf:
+        key: "{{ item.key }}"
+        value: >-
+          {{ item.value | string }}
+        state: present
+      loop: "{{ gnome_desktop_settings }}"
+      notify: Restart gdm
+
+  become: yes
+  become_user: "{{ gnome_desktop_autologin }}"
+  when:
+    - gnome_desktop_autologin_enable|bool
+    - gnome_desktop_autologin|length > 0

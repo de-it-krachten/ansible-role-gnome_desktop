@@ -1,0 +1,31 @@
+---
+
+# OS packages that need to be absent, as they block gnome installation
+gnome_desktop_blocking_packages: []
+
+# Should wayland be activated
+gnome_desktop_wayland: true
+
+# Configure auto login
+gnome_desktop_autologin_enable: false
+
+# User that should be used for autologin
+gnome_desktop_autologin: ''
+
+# Disable screen lock
+gnome_desktop_lock_disable: false
+
+# Timeout (in seconds) before locking
+gnome_desktop_lock_timeout: '900'
+
+# GDM configuration file to use
+gnome_desktop_gdm_conf: "{{ ansible_facts.ansible_local.dm.conf }}"
+
+# GNOME settings
+gnome_desktop_settings:
+  - key: /org/gnome/desktop/session/idle-delay
+    value: '{{ gnome_desktop_lock_timeout }}'
+  - key: /org/gnome/desktop/screensaver/lock-delay
+    value: '{{ gnome_desktop_lock_timeout }}'
+  - key: /org/gnome/desktop/screensaver/lock-enabled
+    value: "{{ 'false' if gnome_desktop_lock_disable|bool else 'true' }}"

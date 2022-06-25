@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# GDM
+if ps -e -o comm | grep -q gdm
+then
+  dm=gdm
+  [[ -z $dm_conf && -f /etc/gdm/daemon.conf ]] && dm_conf=/etc/gdm/daemon.conf
+  [[ -z $dm_conf && -f /etc/gdm/custom.conf ]] && dm_conf=/etc/gdm/custom.conf
+  [[ -z $dm_conf && -f /etc/gdm3/daemon.conf ]] && dm_conf=/etc/gdm3/daemon.conf
+  [[ -z $dm_conf && -f /etc/gdm3/custom.conf ]] && dm_conf=/etc/gdm3/custom.conf
+fi 
+
+# LIGHTDM
+if ps -e -o comm | grep -q lightdm
+then
+  dm=lightdm
+  dm_conf=/etc/lightdm/lightdm.conf.d/10-autologin.conf
+fi
+
+echo "{\"name\" : \"${dm}\" , \"conf\" : \"${dm_conf}\"}"

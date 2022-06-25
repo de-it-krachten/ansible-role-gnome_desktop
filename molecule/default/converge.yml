@@ -1,0 +1,10 @@
+---
+
+- name: Converge
+  hosts: all
+  vars:
+    hashicorp_product: vagrant
+  tasks:
+    - name: Include role 'ansible-role-gnome_desktop'
+      include_role:
+        name: ansible-role-gnome_desktop
