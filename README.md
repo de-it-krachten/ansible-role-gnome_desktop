@@ -15,6 +15,7 @@ Supported platforms
 - Red Hat Enterprise Linux 7<sup>1</sup>
 - Red Hat Enterprise Linux 8<sup>1</sup>
 - CentOS 7
+- CentOS 8
 - RockyLinux 8
 - AlmaLinux 8<sup>1</sup>
 - Debian 10 (Buster)
@@ -22,6 +23,8 @@ Supported platforms
 - Ubuntu 18.04 LTS
 - Ubuntu 20.04 LTS
 - Ubuntu 22.04 LTS
+- Fedora 35
+- Fedora 36
 - Fedora 35
 - Fedora 36
 
@@ -92,7 +95,7 @@ gnome_desktop_blocking_packages: []
 
 # List of package / package groups to install
 gnome_desktop_packages:
-  - "@^gnome-desktop-environment"
+  - "@gnome-desktop"
   - python3-psutil
 </pre></code>
 
