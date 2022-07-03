@@ -9,24 +9,10 @@ generic:
     Primary goal of this role, is to mke it easy to install the Gnome desktop onto headless Vagrant boxes,
     when testing code onto vm's that require a desktop environment. 
 
-github:
-  fail_fast: false
-
-platforms_add:
-  - name: Fedora 35
-    image: fefdora35
-  - name: Fedora 36
-    image: fefdora36
-
 molecule:
   converge:
     vars:
       hashicorp_product: vagrant
-  platforms_add:
-    - name: fedora35
-      image: "geerlingguy/docker-fedora35-ansible:latest"
-    - name: fedora36
-      image: "geerlingguy/docker-fedora36-ansible:latest"
 
 ci_templates:
   requirements.yml:
