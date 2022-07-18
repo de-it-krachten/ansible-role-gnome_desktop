@@ -40,6 +40,7 @@ provisioner:
 {% for platform in MOLECULE_DISTROS %}
       gnome_desktop-{{ platform.name }}-node1:
         gnome_desktop_minimal: true
+
 {% endfor %}
 scenario:
   name: default
