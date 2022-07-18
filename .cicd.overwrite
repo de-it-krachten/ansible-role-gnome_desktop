@@ -23,3 +23,6 @@ molecule:
     roles_extra:
       - facts
       - package
+  host_vars:
+    gnome_desktop-{{ platform.name }}-node1:
+      gnome_desktop_minimal: true

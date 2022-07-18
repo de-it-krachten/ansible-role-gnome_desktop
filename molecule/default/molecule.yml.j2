@@ -36,7 +36,11 @@ provisioner:
     converge: ${MOLECULE_PLAYBOOK:-converge.yml}
   inventory:
     group_vars: {}
-    host_vars: {}
+    host_vars:
+{% for platform in MOLECULE_DISTROS %}
+      gnome_desktop-{{ platform.name }}-node1:
+        gnome_desktop_minimal: true
+{% endfor %}
 scenario:
   name: default
 verifier:
