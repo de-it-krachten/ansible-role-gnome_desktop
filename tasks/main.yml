@@ -1,6 +1,6 @@
 ---
 
-- name: Make sure that autlogin user is defiend when autplogin is enabled
+- name: Make sure that autlogin user is defined when autologin is enabled
   fail:
     msg: "Provide 'gnome_desktop_autologin=<user>' when gnome_desktop_autologin_enable=true" 
   when: gnome_desktop_autologin_enable|bool and gnome_desktop_autologin|length == 0
@@ -22,6 +22,11 @@
   package:
     name: "{{ gnome_desktop_blocking_packages }}"
     state: absent
+
+- name: Switch package list for minimal list
+  set_fact:
+    gnome_desktop_packages: "{{ gnome_desktop_packages_minimal }}"
+  when: gnome_desktop_minimal
 
 - name: Install packages
   include_role:
