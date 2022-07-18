@@ -7,3 +7,8 @@ gnome_desktop_blocking_packages: []
 gnome_desktop_packages:
   - ubuntu-desktop
   - python3-psutil
+
+# List of package / package groups to install - minimal
+gnome_desktop_packages_minimal:
+  - ubuntu-desktop-minimal
+  - python3-psutil
