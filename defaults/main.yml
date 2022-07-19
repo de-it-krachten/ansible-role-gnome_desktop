@@ -6,8 +6,8 @@ gnome_desktop_blocking_packages: []
 # Only install minimal set of packages
 gnome_desktop_minimal: false
 
-# List of packages for miimal desktop
-gnome_desktop_packages_minimal: "{{ gnome_desktop_packages }}"
+# List of packages for minimal desktop
+gnome_desktop_packages_minimal: []
 
 # Should wayland be activated
 gnome_desktop_wayland: true

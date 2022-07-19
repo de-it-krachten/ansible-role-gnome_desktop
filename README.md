@@ -14,12 +14,10 @@ Supported platforms
 
 - Red Hat Enterprise Linux 7<sup>1</sup>
 - Red Hat Enterprise Linux 8<sup>1</sup>
-- Red Hat Enterprise Linux 9<sup>1</sup>
 - CentOS 7
 - RockyLinux 8
 - OracleLinux 8
 - AlmaLinux 8
-- AlmaLinux 9
 - Debian 10 (Buster)
 - Debian 11 (Bullseye)
 - Ubuntu 18.04 LTS
@@ -36,6 +34,12 @@ Note:
 <pre><code>
 # OS packages that need to be absent, as they block gnome installation
 gnome_desktop_blocking_packages: []
+
+# Only install minimal set of packages
+gnome_desktop_minimal: false
+
+# List of packages for minimal desktop
+gnome_desktop_packages_minimal: []
 
 # Should wayland be activated
 gnome_desktop_wayland: true
@@ -108,6 +112,22 @@ gnome_desktop_blocking_packages: []
 gnome_desktop_packages:
   - ubuntu-desktop
   - python3-psutil
+
+# List of package / package groups to install - minimal
+gnome_desktop_packages_minimal:
+  - ubuntu-desktop-minimal
+  - python3-psutil
+</pre></code>
+
+### vars/family-RedHat-9.yml
+<pre><code>
+# List of package known to block gnome installation
+gnome_desktop_blocking_packages: []
+
+# List of package / package groups to install
+gnome_desktop_packages:
+  - "@graphical-server-environment"
+  - python3-psutil
 </pre></code>
 
 
@@ -117,6 +137,7 @@ gnome_desktop_packages:
 <pre><code>
 - name: sample playbook for role 'gnome_desktop'
   hosts: all
+  become: "{{ molecule['converge']['become'] | default('yes') }}"
   vars:
     hashicorp_product: vagrant
   tasks:

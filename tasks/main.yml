@@ -5,14 +5,23 @@
     msg: "Provide 'gnome_desktop_autologin=<user>' when gnome_desktop_autologin_enable=true" 
   when: gnome_desktop_autologin_enable|bool and gnome_desktop_autologin|length == 0
 
-- name: Load variables based on OS type
+- name: Define distro version
+  set_fact:
+    distver: >-
+      {%- if ansible_distribution == 'Ubuntu' -%}
+      {{ ansible_distribution_version|regex_replace('\.') }}
+      {%- else -%}
+      {{ ansible_distribution_major_version }}
+      {%- endif -%}
+
+- name: Get variables based on OS type
   include_vars: "{{ lookup('first_found', params) }}"
   vars:
     params:
       files:
-        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+        - "{{ ansible_distribution }}-{{ distver }}.yml"
         - "{{ ansible_distribution }}.yml"
-        - "family-{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
+        - "family-{{ ansible_os_family }}-{{ distver }}.yml"
         - "family-{{ ansible_os_family }}.yml"
         - default.yml
       paths:
@@ -23,10 +32,12 @@
     name: "{{ gnome_desktop_blocking_packages }}"
     state: absent
 
-- name: Switch package list for minimal list
+- name: Switch package list for minimal list (only if defined)
   set_fact:
     gnome_desktop_packages: "{{ gnome_desktop_packages_minimal }}"
-  when: gnome_desktop_minimal
+  when:
+    - gnome_desktop_minimal
+    - gnome_desktop_packages_minimal|length > 0
 
 - name: Install packages
   include_role:
