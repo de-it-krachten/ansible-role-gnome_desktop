@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/de-it-krachten/ansible-role-gnome_desktop/compare/v1.1.0...v1.1.1) (2022-07-19)
+
+
+### Bug Fixes
+
+* Fix GUI group for RHEL9 ([b16365f](https://github.com/de-it-krachten/ansible-role-gnome_desktop/commit/b16365fd4e6ab52f8ccb2e59b5b1ac167b5a5982))
+
 # [1.1.0](https://github.com/de-it-krachten/ansible-role-gnome_desktop/compare/v1.0.0...v1.1.0) (2022-07-18)
 
 
