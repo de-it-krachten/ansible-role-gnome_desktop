@@ -16,6 +16,7 @@ Supported platforms
 - Red Hat Enterprise Linux 8<sup>1</sup>
 - CentOS 7
 - RockyLinux 8
+- RockyLinux 9
 - OracleLinux 8
 - AlmaLinux 8
 - Debian 10 (Buster)
@@ -78,6 +79,20 @@ gnome_desktop_blocking_packages: []
 gnome_desktop_packages:
   - task-gnome-desktop
   - python3-psutil
+</pre></code>
+
+### vars/Ubuntu-1804.yml
+<pre><code>
+# List of package known to block gnome installation
+gnome_desktop_blocking_packages: []
+  
+# List of package / package groups to install
+gnome_desktop_packages:
+  - ubuntu-desktop
+  - python3-psutil
+
+# List of package / package groups to install - minimal
+gnome_desktop_packages_minimal: []
 </pre></code>
 
 ### vars/Fedora.yml
