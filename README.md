@@ -80,6 +80,20 @@ gnome_desktop_packages:
   - python3-psutil
 </pre></code>
 
+### vars/Ubuntu-1804.yml
+<pre><code>
+# List of package known to block gnome installation
+gnome_desktop_blocking_packages: []
+  
+# List of package / package groups to install
+gnome_desktop_packages:
+  - ubuntu-desktop
+  - python3-psutil
+
+# List of package / package groups to install - minimal
+gnome_desktop_packages_minimal: []
+</pre></code>
+
 ### vars/Fedora.yml
 <pre><code>
 # List of package known to block gnome installation
