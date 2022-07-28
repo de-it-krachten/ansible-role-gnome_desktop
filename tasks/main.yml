@@ -100,7 +100,8 @@
   when: (item.value|type_debug == 'bool') or item.value|length > 0
   notify: Restart gdm
 
-- block:
+- name: Activate autologin
+  block:
 
     - name: Get gnome settings
       command: >-
