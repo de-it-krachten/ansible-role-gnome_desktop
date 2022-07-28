@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/de-it-krachten/ansible-role-gnome_desktop/compare/v1.1.1...v1.2.0) (2022-07-28)
+
+
+### Features
+
+* Implement ansible-lint v6 support ([e72f75c](https://github.com/de-it-krachten/ansible-role-gnome_desktop/commit/e72f75c3810019a64472962014333ce67bb06468))
+
 ## [1.1.1](https://github.com/de-it-krachten/ansible-role-gnome_desktop/compare/v1.1.0...v1.1.1) (2022-07-19)
 
 
