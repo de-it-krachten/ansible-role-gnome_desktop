@@ -1,6 +1,6 @@
 ---
 
 - name: Restart gdm
-  service:
+  ansible.builtin.service:
     name: gdm
     state: restarted
