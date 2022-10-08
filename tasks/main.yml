@@ -1,5 +1,9 @@
 ---
 
+- name: Check if runnig in molecule
+  ansible.builtin.set_fact:
+    molecule_driver: "{{ lookup('env', 'MOLECULE_DRIVER_NAME') }}"
+
 - name: Make sure that autlogin user is defined when autologin is enabled
   ansible.builtin.fail:
     msg: "Provide 'gnome_desktop_autologin=<user>' when gnome_desktop_autologin_enable=true"
@@ -67,11 +71,12 @@
   when: "'graphical' not in systemdefault.stdout"
   register: _systemdefault
 
-- name: Reboot when target changed  # noqa no-handler
+- name: Reboot when target changed  # noqa no-handler 503
   ansible.builtin.reboot:
   when:
     - packages_result.changed or _systemdefault.changed
-    - ansible_virtualization_type not in [ 'docker', 'container', 'containerd' ]
+    # - ansible_virtualization_type not in [ 'docker', 'container', 'containerd' ]
+    - molecule_driver | length > 0 and molecule_driver != 'docker'
 
 
 # -------------------------------------------------------
@@ -83,7 +88,7 @@
     name: facts
   vars:
     custom_facts_additional:
-      - name: Dm
+      - name: dm
 
 - name: Configure GDM
   community.general.ini_file:

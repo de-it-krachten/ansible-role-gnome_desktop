@@ -1,4 +1,3 @@
 ---
 collections:
-  - become_user
   - community.general
