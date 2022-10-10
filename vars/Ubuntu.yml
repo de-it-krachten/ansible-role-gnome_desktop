@@ -2,7 +2,7 @@
 
 # List of package known to block gnome installation
 gnome_desktop_blocking_packages: []
-  
+
 # List of package / package groups to install
 gnome_desktop_packages:
   - ubuntu-desktop

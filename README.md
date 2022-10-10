@@ -8,6 +8,16 @@ Primary goal of this role, is to mke it easy to install the Gnome desktop onto h
 when testing code onto vm's that require a desktop environment. 
 
 
+
+## Dependencies
+
+#### Roles
+None
+
+#### Collections
+- community.general
+- community.general
+
 ## Platforms
 
 Supported platforms
@@ -66,8 +76,9 @@ gnome_desktop_settings:
   - key: /org/gnome/desktop/screensaver/lock-delay
     value: '{{ gnome_desktop_lock_timeout }}'
   - key: /org/gnome/desktop/screensaver/lock-enabled
-    value: "{{ 'false' if gnome_desktop_lock_disable|bool else 'true' }}"
+    value: "{{ 'false' if gnome_desktop_lock_disable | bool else 'true' }}"
 </pre></code>
+
 
 ### vars/Debian.yml
 <pre><code>
@@ -84,7 +95,7 @@ gnome_desktop_packages:
 <pre><code>
 # List of package known to block gnome installation
 gnome_desktop_blocking_packages: []
-  
+
 # List of package / package groups to install
 gnome_desktop_packages:
   - ubuntu-desktop
@@ -121,7 +132,7 @@ gnome_desktop_packages:
 <pre><code>
 # List of package known to block gnome installation
 gnome_desktop_blocking_packages: []
-  
+
 # List of package / package groups to install
 gnome_desktop_packages:
   - ubuntu-desktop
@@ -156,6 +167,6 @@ gnome_desktop_packages:
     hashicorp_product: vagrant
   tasks:
     - name: Include role 'gnome_desktop'
-      include_role:
+      ansible.builtin.include_role:
         name: gnome_desktop
 </pre></code>

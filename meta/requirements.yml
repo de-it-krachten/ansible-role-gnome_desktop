@@ -1,11 +1,3 @@
 ---
 
-- name: facts
-  src: https://github.com/de-it-krachten/ansible-role-facts.git
-  version: main
-  scm: git
-
-- name: package
-  src: https://github.com/de-it-krachten/ansible-role-package.git
-  version: main
-  scm: git
+[]
