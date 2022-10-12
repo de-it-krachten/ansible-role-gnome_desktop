@@ -1,3 +1,11 @@
+# [1.3.0](https://github.com/de-it-krachten/ansible-role-gnome_desktop/compare/v1.2.0...v1.3.0) (2022-10-12)
+
+
+### Features
+
+* Move to FQCN ([1ac53a6](https://github.com/de-it-krachten/ansible-role-gnome_desktop/commit/1ac53a6ec11d6bf1688dec5ff818812faf770fb2))
+* Update CI to latest standards ([b48586c](https://github.com/de-it-krachten/ansible-role-gnome_desktop/commit/b48586c6b03ab4e6ae10580bb8c3e96aaf97e948))
+
 # [1.2.0](https://github.com/de-it-krachten/ansible-role-gnome_desktop/compare/v1.1.1...v1.2.0) (2022-07-28)
 
 
