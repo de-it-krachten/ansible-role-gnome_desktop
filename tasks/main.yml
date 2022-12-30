@@ -47,7 +47,7 @@
   ansible.builtin.include_role:
     name: package
   vars:
-    package_mode: install-verbose
+    package_mode: "{{ gnome_desktop_package_mode }}"
     package_list: "{{ gnome_desktop_packages }}"
 
 - name: Enable gdm
