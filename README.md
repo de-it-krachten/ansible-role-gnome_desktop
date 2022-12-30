@@ -16,7 +16,6 @@ None
 
 #### Collections
 - community.general
-- community.general
 
 ## Platforms
 
@@ -27,6 +26,7 @@ Supported platforms
 - CentOS 7
 - RockyLinux 8
 - OracleLinux 8
+- OracleLinux 9
 - AlmaLinux 8
 - Debian 10 (Buster)
 - Debian 11 (Bullseye)
@@ -50,6 +50,9 @@ gnome_desktop_minimal: false
 
 # List of packages for minimal desktop
 gnome_desktop_packages_minimal: []
+
+# Package mode (switch to 'install' for less output)
+gnome_desktop_package_mode: 'install-verbose'
 
 # Should wayland be activated
 gnome_desktop_wayland: true
@@ -162,7 +165,7 @@ gnome_desktop_packages:
 <pre><code>
 - name: sample playbook for role 'gnome_desktop'
   hosts: all
-  become: "{{ molecule['converge']['become'] | default('yes') }}"
+  become: "yes"
   vars:
     hashicorp_product: vagrant
   tasks:
