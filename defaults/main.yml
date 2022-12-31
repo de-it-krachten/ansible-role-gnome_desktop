@@ -9,6 +9,9 @@ gnome_desktop_minimal: false
 # List of packages for minimal desktop
 gnome_desktop_packages_minimal: []
 
+# Package mode (switch to 'install' for less output)
+gnome_desktop_package_mode: 'install-verbose'
+
 # Should wayland be activated
 gnome_desktop_wayland: true
 
