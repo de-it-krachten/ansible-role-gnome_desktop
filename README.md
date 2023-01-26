@@ -83,14 +83,14 @@ gnome_desktop_settings:
 </pre></code>
 
 
-### vars/Debian.yml
+### vars/family-RedHat-9.yml
 <pre><code>
 # List of package known to block gnome installation
 gnome_desktop_blocking_packages: []
 
 # List of package / package groups to install
 gnome_desktop_packages:
-  - task-gnome-desktop
+  - "@graphical-server-environment"
   - python3-psutil
 </pre></code>
 
@@ -106,29 +106,6 @@ gnome_desktop_packages:
 
 # List of package / package groups to install - minimal
 gnome_desktop_packages_minimal: []
-</pre></code>
-
-### vars/Fedora.yml
-<pre><code>
-# List of package known to block gnome installation
-gnome_desktop_blocking_packages: []
-
-# List of package / package groups to install
-gnome_desktop_packages:
-  # - "@workstation-product-environment"
-  - "@gnome-desktop"
-  - python3-psutil
-</pre></code>
-
-### vars/family-RedHat.yml
-<pre><code>
-# List of package known to block gnome installation
-gnome_desktop_blocking_packages: []
-
-# List of package / package groups to install
-gnome_desktop_packages:
-  - "@gnome-desktop"
-  - python3-psutil
 </pre></code>
 
 ### vars/Ubuntu.yml
@@ -147,14 +124,37 @@ gnome_desktop_packages_minimal:
   - python3-psutil
 </pre></code>
 
-### vars/family-RedHat-9.yml
+### vars/family-RedHat.yml
 <pre><code>
 # List of package known to block gnome installation
 gnome_desktop_blocking_packages: []
 
 # List of package / package groups to install
 gnome_desktop_packages:
-  - "@graphical-server-environment"
+  - "@gnome-desktop"
+  - python3-psutil
+</pre></code>
+
+### vars/Debian.yml
+<pre><code>
+# List of package known to block gnome installation
+gnome_desktop_blocking_packages: []
+
+# List of package / package groups to install
+gnome_desktop_packages:
+  - task-gnome-desktop
+  - python3-psutil
+</pre></code>
+
+### vars/Fedora.yml
+<pre><code>
+# List of package known to block gnome installation
+gnome_desktop_blocking_packages: []
+
+# List of package / package groups to install
+gnome_desktop_packages:
+  # - "@workstation-product-environment"
+  - "@gnome-desktop"
   - python3-psutil
 </pre></code>
 
@@ -168,6 +168,8 @@ gnome_desktop_packages:
   become: "yes"
   vars:
     hashicorp_product: vagrant
+  roles:
+    - deitkrachten.showinfo
   tasks:
     - name: Include role 'gnome_desktop'
       ansible.builtin.include_role:
