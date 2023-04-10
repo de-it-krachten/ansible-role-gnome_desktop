@@ -45,7 +45,7 @@
 
 - name: Install packages
   ansible.builtin.include_role:
-    name: package
+    name: deitkrachten.package
   vars:
     package_mode: "{{ gnome_desktop_package_mode }}"
     package_list: "{{ gnome_desktop_packages }}"
@@ -68,6 +68,7 @@
 
 - name: Set default to graphical target
   ansible.builtin.command: systemctl set-default graphical.target
+  changed_when: true
   when: "'graphical' not in systemdefault.stdout"
   register: _systemdefault
 
@@ -85,7 +86,7 @@
 
 - name: Setup gdm facts
   ansible.builtin.include_role:
-    name: facts
+    name: deitkrachten.facts
   vars:
     custom_facts_additional:
       - name: dm
@@ -122,6 +123,7 @@
 
     - name: Create settings in case they do no exist (dconf-modules fails to do so)
       ansible.builtin.command: dconf write {{ item.item.key }} {{ item.item.value }}
+      changed_when: true
       loop: "{{ _dconf.results }}"
       loop_control:
         label:

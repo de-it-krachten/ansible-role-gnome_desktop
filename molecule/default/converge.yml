@@ -5,6 +5,8 @@
   become: "yes"
   vars:
     hashicorp_product: vagrant
+  roles:
+    - deitkrachten.showinfo
   tasks:
     - name: Include role 'ansible-role-gnome_desktop'
       ansible.builtin.include_role:
