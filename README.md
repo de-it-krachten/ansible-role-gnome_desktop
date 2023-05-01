@@ -12,7 +12,8 @@ when testing code onto vm's that require a desktop environment.
 ## Dependencies
 
 #### Roles
-None
+- deitkrachten.facts
+- deitkrachten.package
 
 #### Collections
 - community.general
@@ -33,8 +34,8 @@ Supported platforms
 - Ubuntu 18.04 LTS
 - Ubuntu 20.04 LTS
 - Ubuntu 22.04 LTS<sup>1</sup>
-- Fedora 35
 - Fedora 36
+- Fedora 37
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
@@ -83,14 +84,14 @@ gnome_desktop_settings:
 </pre></code>
 
 
-### vars/Debian.yml
+### vars/family-RedHat-9.yml
 <pre><code>
 # List of package known to block gnome installation
 gnome_desktop_blocking_packages: []
 
 # List of package / package groups to install
 gnome_desktop_packages:
-  - task-gnome-desktop
+  - "@graphical-server-environment"
   - python3-psutil
 </pre></code>
 
@@ -106,29 +107,6 @@ gnome_desktop_packages:
 
 # List of package / package groups to install - minimal
 gnome_desktop_packages_minimal: []
-</pre></code>
-
-### vars/Fedora.yml
-<pre><code>
-# List of package known to block gnome installation
-gnome_desktop_blocking_packages: []
-
-# List of package / package groups to install
-gnome_desktop_packages:
-  # - "@workstation-product-environment"
-  - "@gnome-desktop"
-  - python3-psutil
-</pre></code>
-
-### vars/family-RedHat.yml
-<pre><code>
-# List of package known to block gnome installation
-gnome_desktop_blocking_packages: []
-
-# List of package / package groups to install
-gnome_desktop_packages:
-  - "@gnome-desktop"
-  - python3-psutil
 </pre></code>
 
 ### vars/Ubuntu.yml
@@ -147,14 +125,37 @@ gnome_desktop_packages_minimal:
   - python3-psutil
 </pre></code>
 
-### vars/family-RedHat-9.yml
+### vars/family-RedHat.yml
 <pre><code>
 # List of package known to block gnome installation
 gnome_desktop_blocking_packages: []
 
 # List of package / package groups to install
 gnome_desktop_packages:
-  - "@graphical-server-environment"
+  - "@gnome-desktop"
+  - python3-psutil
+</pre></code>
+
+### vars/Debian.yml
+<pre><code>
+# List of package known to block gnome installation
+gnome_desktop_blocking_packages: []
+
+# List of package / package groups to install
+gnome_desktop_packages:
+  - task-gnome-desktop
+  - python3-psutil
+</pre></code>
+
+### vars/Fedora.yml
+<pre><code>
+# List of package known to block gnome installation
+gnome_desktop_blocking_packages: []
+
+# List of package / package groups to install
+gnome_desktop_packages:
+  # - "@workstation-product-environment"
+  - "@gnome-desktop"
   - python3-psutil
 </pre></code>
 

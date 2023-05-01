@@ -24,15 +24,24 @@ platforms:
     ci: false
     supported: true
 
+# Dependencies
+dependencies:
+  roles:
+    - deitkrachten.facts
+    - deitkrachten.package
+
 # Molecule
 molecule:
+  prepare:
+    vars:
+      install_python: true
   converge:
     vars:
       hashicorp_product: vagrant
   requirements:
     roles_extra:
-      - facts
-      - package
+      - deitkrachten.facts
+      - deitkrachten.package
   host_vars:
     gnome_desktop-{{ platform.name }}-node1:
       gnome_desktop_minimal: true
