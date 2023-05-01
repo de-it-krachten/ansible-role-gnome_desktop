@@ -12,7 +12,8 @@ when testing code onto vm's that require a desktop environment.
 ## Dependencies
 
 #### Roles
-None
+- deitkrachten.facts
+- deitkrachten.package
 
 #### Collections
 - community.general
@@ -168,8 +169,6 @@ gnome_desktop_packages:
   become: "yes"
   vars:
     hashicorp_product: vagrant
-  roles:
-    - deitkrachten.showinfo
   tasks:
     - name: Include role 'gnome_desktop'
       ansible.builtin.include_role:

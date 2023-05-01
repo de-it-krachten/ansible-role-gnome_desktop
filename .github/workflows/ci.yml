@@ -342,7 +342,7 @@ jobs:
           elif [[ $MOLECULE_DRIVER == 'podman' ]] ; then
             pip3 install "${{ matrix.ansible }}" "${{ matrix.ansible_lint }}" molecule[podman] yamllint jmespath e2j2 yq
           else
-            pip3 install "${{ matrix.ansible }}" "${{ matrix.ansible_lint }}" molecule[docker] yamllint jmespath e2j2 yq
+            pip3 install "${{ matrix.ansible }}" "${{ matrix.ansible_lint }}" "molecule<5.0.0" molecule[docker] yamllint jmespath e2j2 yq
           fi
         env:
           MOLECULE_DRIVER: ${{ vars.MOLECULE_DRIVER }}

@@ -24,6 +24,12 @@ platforms:
     ci: false
     supported: true
 
+# Dependencies
+dependencies:
+  roles:
+    - deitkrachten.facts
+    - deitkrachten.package
+
 # Molecule
 molecule:
   prepare:
