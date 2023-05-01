@@ -1,3 +1,15 @@
+# [1.4.0](https://github.com/de-it-krachten/ansible-role-gnome_desktop/compare/v1.3.0...v1.4.0) (2023-05-01)
+
+
+### Bug Fixes
+
+* Add missing dependencies ([07907b9](https://github.com/de-it-krachten/ansible-role-gnome_desktop/commit/07907b9f55c305bfd8883ea9769618ef4cd6e538))
+
+
+### Features
+
+* Move to namespaced role names ([3b831bd](https://github.com/de-it-krachten/ansible-role-gnome_desktop/commit/3b831bd9f2512568eca35ebe1a2c3d4a125d494b))
+
 # [1.3.0](https://github.com/de-it-krachten/ansible-role-gnome_desktop/compare/v1.2.0...v1.3.0) (2022-10-12)
 
 
