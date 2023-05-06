@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/de-it-krachten/ansible-role-gnome_desktop/compare/v1.4.0...v1.4.1) (2023-05-06)
+
+
+### Bug Fixes
+
+* Add package xdg-utils for RedHat family ([e92cbfa](https://github.com/de-it-krachten/ansible-role-gnome_desktop/commit/e92cbfa1d7872e8a702e45341ec5fdce6ae4d999))
+
 # [1.4.0](https://github.com/de-it-krachten/ansible-role-gnome_desktop/compare/v1.3.0...v1.4.0) (2023-05-01)
 
 
