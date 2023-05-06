@@ -7,3 +7,4 @@ gnome_desktop_blocking_packages: []
 gnome_desktop_packages:
   - "@graphical-server-environment"
   - python3-psutil
+  - xdg-utils
