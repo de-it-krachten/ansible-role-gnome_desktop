@@ -29,13 +29,15 @@ Supported platforms
 - OracleLinux 8
 - OracleLinux 9
 - AlmaLinux 8
-- Debian 10 (Buster)
+- SUSE Linux Enterprise 15<sup>1</sup>
+- openSUSE Leap 15
+- Debian 10 (Buster)<sup>1</sup>
 - Debian 11 (Bullseye)
-- Ubuntu 18.04 LTS
+- Debian 12 (Bookworm)
 - Ubuntu 20.04 LTS
 - Ubuntu 22.04 LTS<sup>1</sup>
-- Fedora 36
 - Fedora 37
+- Fedora 38
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
@@ -93,6 +95,7 @@ gnome_desktop_blocking_packages: []
 gnome_desktop_packages:
   - "@graphical-server-environment"
   - python3-psutil
+  - xdg-utils
 </pre></code>
 
 ### vars/Ubuntu-1804.yml
@@ -134,6 +137,7 @@ gnome_desktop_blocking_packages: []
 gnome_desktop_packages:
   - "@gnome-desktop"
   - python3-psutil
+  - xdg-utils
 </pre></code>
 
 ### vars/Debian.yml

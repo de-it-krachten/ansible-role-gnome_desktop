@@ -72,7 +72,7 @@
   when: "'graphical' not in systemdefault.stdout"
   register: _systemdefault
 
-- name: Reboot when target changed  # noqa no-handler 503
+- name: Reboot when target changed  # noqa no-handler
   ansible.builtin.reboot:
   when:
     - packages_result.changed or _systemdefault.changed
@@ -84,7 +84,7 @@
 # Configure GDM
 # -------------------------------------------------------
 
-- name: Setup gdm facts
+- name: Setup gdm facts  # noqa var-naming[no-role-prefix]
   ansible.builtin.include_role:
     name: deitkrachten.facts
   vars:
