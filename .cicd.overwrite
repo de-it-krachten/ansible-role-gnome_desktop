@@ -20,6 +20,12 @@ platforms:
   almalinux9:
     ci: false
     supported: false
+  opensuse15:
+    ci: false
+    supported: false
+  sles15:
+    ci: false
+    supported: false
   ubuntu2204:
     ci: false
     supported: true
