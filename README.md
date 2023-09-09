@@ -29,13 +29,13 @@ Supported platforms
 - OracleLinux 8
 - OracleLinux 9
 - AlmaLinux 8
-- Debian 10 (Buster)
+- Debian 10 (Buster)<sup>1</sup>
 - Debian 11 (Bullseye)
-- Ubuntu 18.04 LTS
+- Debian 12 (Bookworm)
 - Ubuntu 20.04 LTS
 - Ubuntu 22.04 LTS<sup>1</sup>
-- Fedora 36
 - Fedora 37
+- Fedora 38
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
@@ -83,8 +83,7 @@ gnome_desktop_settings:
     value: "{{ 'false' if gnome_desktop_lock_disable | bool else 'true' }}"
 </pre></code>
 
-
-### vars/family-RedHat-9.yml
+### defaults/family-RedHat-9.yml
 <pre><code>
 # List of package known to block gnome installation
 gnome_desktop_blocking_packages: []
@@ -93,9 +92,10 @@ gnome_desktop_blocking_packages: []
 gnome_desktop_packages:
   - "@graphical-server-environment"
   - python3-psutil
+  - xdg-utils
 </pre></code>
 
-### vars/Ubuntu-1804.yml
+### defaults/Ubuntu-1804.yml
 <pre><code>
 # List of package known to block gnome installation
 gnome_desktop_blocking_packages: []
@@ -109,7 +109,7 @@ gnome_desktop_packages:
 gnome_desktop_packages_minimal: []
 </pre></code>
 
-### vars/Ubuntu.yml
+### defaults/Ubuntu.yml
 <pre><code>
 # List of package known to block gnome installation
 gnome_desktop_blocking_packages: []
@@ -125,7 +125,7 @@ gnome_desktop_packages_minimal:
   - python3-psutil
 </pre></code>
 
-### vars/family-RedHat.yml
+### defaults/family-RedHat.yml
 <pre><code>
 # List of package known to block gnome installation
 gnome_desktop_blocking_packages: []
@@ -134,9 +134,10 @@ gnome_desktop_blocking_packages: []
 gnome_desktop_packages:
   - "@gnome-desktop"
   - python3-psutil
+  - xdg-utils
 </pre></code>
 
-### vars/Debian.yml
+### defaults/Debian.yml
 <pre><code>
 # List of package known to block gnome installation
 gnome_desktop_blocking_packages: []
@@ -147,7 +148,7 @@ gnome_desktop_packages:
   - python3-psutil
 </pre></code>
 
-### vars/Fedora.yml
+### defaults/Fedora.yml
 <pre><code>
 # List of package known to block gnome installation
 gnome_desktop_blocking_packages: []
@@ -158,6 +159,7 @@ gnome_desktop_packages:
   - "@gnome-desktop"
   - python3-psutil
 </pre></code>
+
 
 
 

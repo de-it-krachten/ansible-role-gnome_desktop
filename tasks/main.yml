@@ -9,6 +9,13 @@
     msg: "Provide 'gnome_desktop_autologin=<user>' when gnome_desktop_autologin_enable=true"
   when: gnome_desktop_autologin_enable | bool and gnome_desktop_autologin | length == 0
 
+- name: Setup gdm facts  # noqa var-naming[no-role-prefix]
+  ansible.builtin.include_role:
+    name: deitkrachten.facts
+  vars:
+    custom_facts_additional:
+      - name: dm
+
 - name: Define distro version  # noqa jinja[spacing]
   ansible.builtin.set_fact:
     distver: >-
@@ -19,17 +26,8 @@
       {%- endif -%}
 
 - name: Get variables based on OS type
-  ansible.builtin.include_vars: "{{ lookup('first_found', params) }}"
-  vars:
-    params:
-      files:
-        - "{{ ansible_distribution }}-{{ distver }}.yml"
-        - "{{ ansible_distribution }}.yml"
-        - "family-{{ ansible_os_family }}-{{ distver }}.yml"
-        - "family-{{ ansible_os_family }}.yml"
-        - default.yml
-      paths:
-        - 'vars'
+  ansible.builtin.include_tasks:
+    file: vars.yml
 
 - name: Uninstall blocking packages
   ansible.builtin.package:
@@ -72,7 +70,7 @@
   when: "'graphical' not in systemdefault.stdout"
   register: _systemdefault
 
-- name: Reboot when target changed  # noqa no-handler 503
+- name: Reboot when target changed  # noqa no-handler
   ansible.builtin.reboot:
   when:
     - packages_result.changed or _systemdefault.changed
@@ -84,12 +82,8 @@
 # Configure GDM
 # -------------------------------------------------------
 
-- name: Setup gdm facts
-  ansible.builtin.include_role:
-    name: deitkrachten.facts
-  vars:
-    custom_facts_additional:
-      - name: dm
+- name: Rerun setup phase
+  ansible.builtin.setup:
 
 - name: Configure GDM
   community.general.ini_file:
