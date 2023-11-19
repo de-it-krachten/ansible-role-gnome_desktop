@@ -29,7 +29,6 @@ Supported platforms
 - OracleLinux 8
 - OracleLinux 9
 - AlmaLinux 8
-- Debian 10 (Buster)<sup>1</sup>
 - Debian 11 (Bullseye)
 - Debian 12 (Bookworm)
 - Ubuntu 20.04 LTS
@@ -168,7 +167,7 @@ gnome_desktop_packages:
 <pre><code>
 - name: sample playbook for role 'gnome_desktop'
   hosts: all
-  become: "yes"
+  become: 'yes'
   vars:
     hashicorp_product: vagrant
   tasks:
