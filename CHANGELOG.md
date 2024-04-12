@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/de-it-krachten/ansible-role-gnome_desktop/compare/v1.5.0...v1.5.1) (2024-04-12)
+
+
+### Bug Fixes
+
+* Change loop/label for latest ansible ([28c74b0](https://github.com/de-it-krachten/ansible-role-gnome_desktop/commit/28c74b051b638a1f1a893a66c4c79a324fc962c7))
+
 # [1.5.0](https://github.com/de-it-krachten/ansible-role-gnome_desktop/compare/v1.4.1...v1.5.0) (2023-09-09)
 
 
