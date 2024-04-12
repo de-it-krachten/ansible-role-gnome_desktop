@@ -120,8 +120,7 @@
       changed_when: true
       loop: "{{ _dconf.results }}"
       loop_control:
-        label:
-          - "{{ item.item.key }}"
+        label: "{{ item.item.key }}"
       when: item.stdout | length == 0
       notify: Restart gdm
 
