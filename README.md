@@ -33,8 +33,9 @@ Supported platforms
 - Debian 12 (Bookworm)
 - Ubuntu 20.04 LTS
 - Ubuntu 22.04 LTS<sup>1</sup>
-- Fedora 37
-- Fedora 38
+- Ubuntu 24.04 LTS
+- Fedora 39
+- Fedora 40
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
@@ -82,18 +83,6 @@ gnome_desktop_settings:
     value: "{{ 'false' if gnome_desktop_lock_disable | bool else 'true' }}"
 </pre></code>
 
-### defaults/Fedora.yml
-<pre><code>
-# List of package known to block gnome installation
-gnome_desktop_blocking_packages: []
-
-# List of package / package groups to install
-gnome_desktop_packages:
-  # - "@workstation-product-environment"
-  - "@gnome-desktop"
-  - python3-psutil
-</pre></code>
-
 ### defaults/Debian.yml
 <pre><code>
 # List of package known to block gnome installation
@@ -103,6 +92,18 @@ gnome_desktop_blocking_packages: []
 gnome_desktop_packages:
   - task-gnome-desktop
   - python3-psutil
+</pre></code>
+
+### defaults/family-RedHat-9.yml
+<pre><code>
+# List of package known to block gnome installation
+gnome_desktop_blocking_packages: []
+
+# List of package / package groups to install
+gnome_desktop_packages:
+  - "@graphical-server-environment"
+  - python3-psutil
+  - xdg-utils
 </pre></code>
 
 ### defaults/family-RedHat.yml
@@ -117,19 +118,15 @@ gnome_desktop_packages:
   - xdg-utils
 </pre></code>
 
-### defaults/Ubuntu.yml
+### defaults/Fedora.yml
 <pre><code>
 # List of package known to block gnome installation
 gnome_desktop_blocking_packages: []
 
 # List of package / package groups to install
 gnome_desktop_packages:
-  - ubuntu-desktop
-  - python3-psutil
-
-# List of package / package groups to install - minimal
-gnome_desktop_packages_minimal:
-  - ubuntu-desktop-minimal
+  # - "@workstation-product-environment"
+  - "@gnome-desktop"
   - python3-psutil
 </pre></code>
 
@@ -147,16 +144,20 @@ gnome_desktop_packages:
 gnome_desktop_packages_minimal: []
 </pre></code>
 
-### defaults/family-RedHat-9.yml
+### defaults/Ubuntu.yml
 <pre><code>
 # List of package known to block gnome installation
 gnome_desktop_blocking_packages: []
 
 # List of package / package groups to install
 gnome_desktop_packages:
-  - "@graphical-server-environment"
+  - ubuntu-desktop
   - python3-psutil
-  - xdg-utils
+
+# List of package / package groups to install - minimal
+gnome_desktop_packages_minimal:
+  - ubuntu-desktop-minimal
+  - python3-psutil
 </pre></code>
 
 
