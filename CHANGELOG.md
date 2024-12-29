@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/de-it-krachten/ansible-role-gnome_desktop/compare/v1.6.0...v1.7.0) (2024-12-29)
+
+
+### Features
+
+* Update supported platforms & CI ([8b2f277](https://github.com/de-it-krachten/ansible-role-gnome_desktop/commit/8b2f27701af69ea7b219227cda0416137123b556))
+
 # [1.6.0](https://github.com/de-it-krachten/ansible-role-gnome_desktop/compare/v1.5.1...v1.6.0) (2024-06-01)
 
 
