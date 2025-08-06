@@ -1,3 +1,11 @@
+# [1.8.0](https://github.com/de-it-krachten/ansible-role-gnome_desktop/compare/v1.7.0...v1.8.0) (2025-08-06)
+
+
+### Features
+
+* Add support for Debian 13 (Trixie) ([cf7ebfc](https://github.com/de-it-krachten/ansible-role-gnome_desktop/commit/cf7ebfcfab1553d6047c740e619ee17a22acc6d2))
+* Add support for OracleLinux 10 ([a820678](https://github.com/de-it-krachten/ansible-role-gnome_desktop/commit/a820678fc32737b3d683dbfaf88333c3e23ad8f3))
+
 # [1.7.0](https://github.com/de-it-krachten/ansible-role-gnome_desktop/compare/v1.6.0...v1.7.0) (2024-12-29)
 
 
