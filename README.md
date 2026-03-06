@@ -34,11 +34,12 @@ Supported platforms
 - Ubuntu 20.04 LTS
 - Ubuntu 22.04 LTS<sup>1</sup>
 - Ubuntu 24.04 LTS
-- Fedora 41
 - Fedora 42
+- Fedora 43
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
+
 
 ## Role Variables
 ### defaults/main.yml
@@ -170,6 +171,7 @@ gnome_desktop_packages_minimal:
   hosts: all
   become: 'yes'
   vars:
+    molecule_driver: '{{ lookup(''env'', ''MOLECULE_DRIVER_NAME'') }}'
     hashicorp_product: vagrant
   tasks:
     - name: Include role 'gnome_desktop'

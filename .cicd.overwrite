@@ -12,32 +12,29 @@ generic:
 # Supported platforms
 platforms:
   rhel9:
-    ci: false
     supported: false
+    ci: false
   rhel10:
-    ci: false
     supported: false
+    ci: false
   rockylinux9:
-    ci: false
     supported: false
+    ci: false
   rockylinux10:
-    ci: false
     supported: false
+    ci: false
   almalinux9:
-    ci: false
     supported: false
+    ci: false
   almalinux10:
-    ci: false
     supported: false
-  opensuse15:
     ci: false
-    supported: false
-  sles15:
-    ci: false
-    supported: false
-  ubuntu2204:
-    ci: false
+  ubuntu2004:
     supported: true
+    ci: true
+  ubuntu2204:
+    supported: true
+    ci: false
 
 # Dependencies
 dependencies:
