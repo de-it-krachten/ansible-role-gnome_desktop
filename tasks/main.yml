@@ -74,7 +74,7 @@
   ansible.builtin.reboot:
   when:
     - packages_result.changed or _systemdefault.changed
-    # - ansible_virtualization_type not in [ 'docker', 'container', 'containerd' ]
+    # - ansible_facts.virtualization_type not in [ 'docker', 'container', 'containerd' ]
     - molecule_driver | length > 0 and molecule_driver != 'docker'
 
 
