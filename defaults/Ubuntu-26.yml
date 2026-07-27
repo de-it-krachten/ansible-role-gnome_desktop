@@ -1,0 +1,4 @@
+---
+
+# GNOME display manager service name
+gnome_desktop_service: gdm3

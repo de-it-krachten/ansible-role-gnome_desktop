@@ -50,10 +50,10 @@
 
 - name: Enable gdm
   ansible.builtin.service:
-    name: gdm
+    name: "{{ gnome_desktop_service }}"
     state: started
     enabled: true
-
+  notify: Restart gdm
 
 # -------------------------------------------------------
 # Activate graphical interface
@@ -79,13 +79,21 @@
 
 
 # -------------------------------------------------------
-# Configure GDM
+# Configure gdm
 # -------------------------------------------------------
 
 - name: Rerun setup phase
   ansible.builtin.setup:
 
-- name: Configure GDM
+- name: Debug info
+  ansible.builtin.debug:
+    var: gnome_desktop_service
+
+- name: Debug info
+  ansible.builtin.debug:
+    var: ansible_facts['ansible_local']['dm']
+
+- name: Configure gdm
   community.general.ini_file:
     path: "{{ gnome_desktop_gdm_conf }}"
     section: "{{ item.section }}"

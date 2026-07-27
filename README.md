@@ -73,7 +73,7 @@ gnome_desktop_lock_disable: false
 gnome_desktop_lock_timeout: '900'
 
 # GDM configuration file to use
-gnome_desktop_gdm_conf: "{{ ansible_facts.ansible_local.dm.conf }}"
+gnome_desktop_gdm_conf: "{{ ansible_facts['ansible_local']['dm']['conf'] }}"
 
 # GNOME settings
 gnome_desktop_settings:
@@ -83,6 +83,9 @@ gnome_desktop_settings:
     value: '{{ gnome_desktop_lock_timeout }}'
   - key: /org/gnome/desktop/screensaver/lock-enabled
     value: "{{ 'false' if gnome_desktop_lock_disable | bool else 'true' }}"
+
+# GNOME display manager service name
+gnome_desktop_service: gdm
 </pre></code>
 
 ### defaults/Debian.yml
@@ -132,7 +135,7 @@ gnome_desktop_packages:
   - python3-psutil
 </pre></code>
 
-### defaults/Ubuntu-1804.yml
+### defaults/Ubuntu-18.yml
 <pre><code>
 # List of package known to block gnome installation
 gnome_desktop_blocking_packages: []
@@ -144,6 +147,12 @@ gnome_desktop_packages:
 
 # List of package / package groups to install - minimal
 gnome_desktop_packages_minimal: []
+</pre></code>
+
+### defaults/Ubuntu-26.yml
+<pre><code>
+# GNOME display manager service name
+gnome_desktop_service: gdm3
 </pre></code>
 
 ### defaults/Ubuntu.yml
