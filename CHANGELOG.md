@@ -1,3 +1,21 @@
+# [1.9.0](https://github.com/de-it-krachten/ansible-role-gnome_desktop/compare/v1.8.0...v1.9.0) (2026-08-05)
+
+
+### Bug Fixes
+
+* Standarize vars.yml ([eebdf88](https://github.com/de-it-krachten/ansible-role-gnome_desktop/commit/eebdf88ea87bf5bea724031f2a5c1f3bb483011d))
+* Ubuntu 26.04 uses different GDM service name ([6847645](https://github.com/de-it-krachten/ansible-role-gnome_desktop/commit/684764583cf212f7d81985a01fc7536e16151c22))
+
+
+### Features
+
+* Add support for ansible-core 2.20+ ([2d2478a](https://github.com/de-it-krachten/ansible-role-gnome_desktop/commit/2d2478a1dcb1e90cd74e8bfeaa0c4a13a69ffcad))
+* Added support for Fedora 43 ([4460e95](https://github.com/de-it-krachten/ansible-role-gnome_desktop/commit/4460e9517a048211fd0fec1886e2a4a58e4c7159))
+* Added support for Fedora 44 ([4559cf5](https://github.com/de-it-krachten/ansible-role-gnome_desktop/commit/4559cf55ec517a288dc4f067ed7b0649363bf580))
+* Added support for Ubuntu 26.04 LTS ([67f3ecd](https://github.com/de-it-krachten/ansible-role-gnome_desktop/commit/67f3ecda43d86f0e0cbe893d75d7aaf8c3154656))
+* Drop support for Fedora 41 ([55e7de3](https://github.com/de-it-krachten/ansible-role-gnome_desktop/commit/55e7de3760e315cb8be2d26a70fd1d8e0839c611))
+* Drop support for Fedora 42 ([cd9c937](https://github.com/de-it-krachten/ansible-role-gnome_desktop/commit/cd9c93706f2e029d9ee0c083491bef9ca24e3b1c))
+
 # [1.8.0](https://github.com/de-it-krachten/ansible-role-gnome_desktop/compare/v1.7.0...v1.8.0) (2025-08-06)
 
 
