@@ -34,11 +34,13 @@ Supported platforms
 - Ubuntu 20.04 LTS
 - Ubuntu 22.04 LTS<sup>1</sup>
 - Ubuntu 24.04 LTS
-- Fedora 41
-- Fedora 42
+- Ubuntu 26.04 LTS
+- Fedora 43
+- Fedora 44<sup>1</sup>
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
+
 
 ## Role Variables
 ### defaults/main.yml
@@ -71,7 +73,7 @@ gnome_desktop_lock_disable: false
 gnome_desktop_lock_timeout: '900'
 
 # GDM configuration file to use
-gnome_desktop_gdm_conf: "{{ ansible_facts.ansible_local.dm.conf }}"
+gnome_desktop_gdm_conf: "{{ ansible_facts['ansible_local']['dm']['conf'] }}"
 
 # GNOME settings
 gnome_desktop_settings:
@@ -81,6 +83,9 @@ gnome_desktop_settings:
     value: '{{ gnome_desktop_lock_timeout }}'
   - key: /org/gnome/desktop/screensaver/lock-enabled
     value: "{{ 'false' if gnome_desktop_lock_disable | bool else 'true' }}"
+
+# GNOME display manager service name
+gnome_desktop_service: gdm
 </pre></code>
 
 ### defaults/Debian.yml
@@ -130,7 +135,7 @@ gnome_desktop_packages:
   - python3-psutil
 </pre></code>
 
-### defaults/Ubuntu-1804.yml
+### defaults/Ubuntu-18.yml
 <pre><code>
 # List of package known to block gnome installation
 gnome_desktop_blocking_packages: []
@@ -142,6 +147,12 @@ gnome_desktop_packages:
 
 # List of package / package groups to install - minimal
 gnome_desktop_packages_minimal: []
+</pre></code>
+
+### defaults/Ubuntu-26.yml
+<pre><code>
+# GNOME display manager service name
+gnome_desktop_service: gdm3
 </pre></code>
 
 ### defaults/Ubuntu.yml
@@ -170,6 +181,7 @@ gnome_desktop_packages_minimal:
   hosts: all
   become: 'yes'
   vars:
+    molecule_driver: '{{ lookup(''env'', ''MOLECULE_DRIVER_NAME'') }}'
     hashicorp_product: vagrant
   tasks:
     - name: Include role 'gnome_desktop'

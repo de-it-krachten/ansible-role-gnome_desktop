@@ -19,10 +19,10 @@
 - name: Define distro version  # noqa jinja[spacing]
   ansible.builtin.set_fact:
     distver: >-
-      {%- if ansible_distribution == 'Ubuntu' -%}
-      {{ ansible_distribution_version | regex_replace('\.') }}
+      {%- if ansible_facts.distribution == 'Ubuntu' -%}
+      {{ ansible_facts.distribution_version | regex_replace('\.') }}
       {%- else -%}
-      {{ ansible_distribution_major_version }}
+      {{ ansible_facts.distribution_major_version }}
       {%- endif -%}
 
 - name: Get variables based on OS type
@@ -50,10 +50,10 @@
 
 - name: Enable gdm
   ansible.builtin.service:
-    name: gdm
+    name: "{{ gnome_desktop_service }}"
     state: started
     enabled: true
-
+  notify: Restart gdm
 
 # -------------------------------------------------------
 # Activate graphical interface
@@ -74,18 +74,26 @@
   ansible.builtin.reboot:
   when:
     - packages_result.changed or _systemdefault.changed
-    # - ansible_virtualization_type not in [ 'docker', 'container', 'containerd' ]
+    # - ansible_facts.virtualization_type not in [ 'docker', 'container', 'containerd' ]
     - molecule_driver | length > 0 and molecule_driver != 'docker'
 
 
 # -------------------------------------------------------
-# Configure GDM
+# Configure gdm
 # -------------------------------------------------------
 
 - name: Rerun setup phase
   ansible.builtin.setup:
 
-- name: Configure GDM
+- name: Debug info
+  ansible.builtin.debug:
+    var: gnome_desktop_service
+
+- name: Debug info
+  ansible.builtin.debug:
+    var: ansible_facts['ansible_local']['dm']
+
+- name: Configure gdm
   community.general.ini_file:
     path: "{{ gnome_desktop_gdm_conf }}"
     section: "{{ item.section }}"

@@ -2,5 +2,5 @@
 
 - name: Restart gdm
   ansible.builtin.service:
-    name: gdm
+    name: "{{ gnome_desktop_service }}"
     state: restarted
