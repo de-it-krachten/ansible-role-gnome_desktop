@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/de-it-krachten/ansible-role-gnome_desktop/compare/v1.9.0...v1.10.0) (2026-10-30)
+
+
+### Features
+
+* Drop support for Debian 11 (Bullseye) ([9839c58](https://github.com/de-it-krachten/ansible-role-gnome_desktop/commit/9839c58165b3ed81d75086759ccd13d9777d8f89))
+
 # [1.9.0](https://github.com/de-it-krachten/ansible-role-gnome_desktop/compare/v1.8.0...v1.9.0) (2026-08-05)
 
 
